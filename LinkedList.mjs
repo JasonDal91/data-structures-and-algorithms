@@ -22,4 +22,35 @@ class Node {
   }
 }
 
-export { Node };
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.count = 0;
+  }
+
+  insertAt(index, data) {
+    let node = new Node(data);
+
+    if (index < 0 || index > this.count) {
+      throw new Error('index should be over than 0 and lese than count');
+    }
+
+    this.head = node;
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
+    }
+    currentNode.next = node;
+    node.next = currentNode.next.next;
+    count++;
+
+    console.log(node);
+  }
+}
+
+export { Node, LinkedList };
+
+// insertAt(0, 1)
+// 첫번쨰 노드에 1이 저장
+// insertAt(3, 1)
+// 4번쨰 노드에 1 저장
+// head와 next로 순서를 기억
