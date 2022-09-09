@@ -35,13 +35,16 @@ class LinkedList {
       throw new Error('index should be over than 0 and lese than count');
     }
 
-    this.head = node;
-    for (let i = 0; i < index; i++) {
-      currentNode = currentNode.next;
+    if (index === 0) {
+      this.head = node;
     }
-    currentNode.next = node;
-    node.next = currentNode.next.next;
-    count++;
+
+    let currentNode = this.head;
+    for (let i = 0; i < index; i++) {
+      node.next = currentNode.next;
+      currentNode.next = node;
+    }
+    this.count++;
 
     console.log(node);
   }

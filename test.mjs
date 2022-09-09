@@ -16,3 +16,4 @@ console.log(node1.next.next.data);
 const linkedList = new LinkedList();
 linkedList.insertAt(0, 3);
 linkedList.insertAt(1, 3);
+linkedList.insertAt(2, 2);
