@@ -32,7 +32,6 @@ class LinkedList {
     if (index < 0 || index > this.count) {
       throw new Error('index should be over than 0 and lese than count');
     }
-
     let newNode = new Node(data);
 
     if (index === 0) {
@@ -51,9 +50,3 @@ class LinkedList {
 }
 
 export { Node, LinkedList };
-
-// insertAt(0, 1)
-// 첫번쨰 노드에 1이 저장
-// insertAt(3, 1)
-// 4번쨰 노드에 1 저장
-// head와 next로 순서를 기억
