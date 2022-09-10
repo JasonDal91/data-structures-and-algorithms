@@ -29,24 +29,24 @@ class LinkedList {
   }
 
   insertAt(index, data) {
-    let node = new Node(data);
-
     if (index < 0 || index > this.count) {
       throw new Error('index should be over than 0 and lese than count');
     }
 
-    if (index === 0) {
-      this.head = node;
-    }
+    let newNode = new Node(data);
 
-    let currentNode = this.head;
-    for (let i = 0; i < index; i++) {
-      node.next = currentNode.next;
-      currentNode.next = node;
+    if (index === 0) {
+      newNode.next = this.head;
+      this.head = newNode;
+    } else {
+      let currentNode = this.head;
+      for (let i = 0; i < index - 1; i++) {
+        currentNode = currentNode.next;
+      }
+      newNode.next = currentNode.next;
+      currentNode.next = newNode;
     }
     this.count++;
-
-    console.log(node);
   }
 }
 
