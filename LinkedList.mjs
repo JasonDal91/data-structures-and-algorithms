@@ -28,6 +28,15 @@ class LinkedList {
     this.count = 0;
   }
 
+  printAll() {
+    let currentNode = this.head;
+
+    while (currentNode !== null) {
+      console.log(currentNode.data);
+      currentNode = currentNode.next;
+    }
+  }
+
   insertAt(index, data) {
     if (index < 0 || index > this.count) {
       throw new Error('index should be over than 0 and lese than count');
