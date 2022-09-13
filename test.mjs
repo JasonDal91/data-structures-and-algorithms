@@ -14,8 +14,19 @@ console.log(node1.next.data);
 console.log(node1.next.next.data);
 
 const linkedList = new LinkedList();
-linkedList.insertAt(0, 3);
-linkedList.insertAt(1, 3);
-linkedList.insertAt(2, 2);
-console.log('---print all---');
+
+console.log('===== insertAt() 다섯 번 호출 =====');
+linkedList.insertAt(0, 1);
+linkedList.insertAt(1, 2);
+linkedList.insertAt(2, 3);
+linkedList.insertAt(3, 4);
+linkedList.insertAt(4, 5);
+linkedList.printAll();
+console.log('===== claer() 호출 ====');
+linkedList.clear();
+linkedList.printAll();
+console.log('===== insertLast() 세 번 호출 =====');
+linkedList.insertLast(0);
+linkedList.insertLast(1);
+linkedList.insertLast(2);
 linkedList.printAll();
