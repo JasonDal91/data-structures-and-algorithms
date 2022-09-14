@@ -71,6 +71,43 @@ class LinkedList {
   insertLast(data) {
     this.insertAt(this.count, data);
   }
+
+  deleteAt(index) {
+    if (index >= this.count || index < 0) {
+      throw new Error('index should be over than 0 and lese than count');
+    }
+    let currentNode = this.head;
+    if (index === 0) {
+      let deleteNode = this.head;
+      this.head = this.head.next;
+      this.count--;
+      return deleteNode;
+    } else {
+      for (let i = 0; i < index - 1; i++) {
+        currentNode = currentNode.next;
+      }
+      let deleteNode = currentNode.next;
+      currentNode.next = currentNode.next.next;
+      this.count--;
+      return deleteNode;
+    }
+  }
+
+  deleteLast() {
+    this.deleteAt(this.count - 1);
+  }
+
+  getNodeAt(index) {
+    if (index >= this.count || index < 0) {
+      throw new Error('index should be over than 0 and lese than count');
+    }
+    let currentNode = this.head;
+
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
+    }
+    return currentNode;
+  }
 }
 
 export { Node, LinkedList };
