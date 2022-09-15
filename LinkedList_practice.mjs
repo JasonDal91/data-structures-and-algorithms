@@ -6,3 +6,45 @@
 // 5. 인덱스 삭제  deleteAt(index)
 // 6. 마지막 삭제  deleteLast()
 // 7. 인덱스 읽기  getNodeAt(index)
+
+class Node {
+  constructor(data) {
+    (this.data = data), (this.next = null);
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.count = 0;
+  }
+
+  insertAt(index, data) {
+    if (index < 0 || index > this.count) {
+      throw new Error('index는 0보다 크고 count보다 작거나 같아야 합니다.');
+    }
+    const newNode = new Node(data);
+
+    if (index === 0) {
+      this.head = newNode;
+    } else {
+      let currentNode = this.head;
+      for (let i = 0; i < index - 1; i++) {
+        currentNode = currentNode.next;
+      }
+      newNode.next = currentNode.next;
+      currentNode.next = newNode;
+    }
+    this.count++;
+  }
+
+  printAll() {
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      console.log(currentNode.data);
+      currentNode = currentNode.next;
+    }
+  }
+}
+
+export { Node, LinkedList };
