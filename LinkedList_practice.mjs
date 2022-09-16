@@ -40,10 +40,65 @@ class LinkedList {
 
   printAll() {
     let currentNode = this.head;
+    let text = '[';
     while (currentNode !== null) {
-      console.log(currentNode.data);
+      text += `${currentNode.data}`;
+      currentNode = currentNode.next;
+      if (currentNode !== null) {
+        text += ',';
+      }
+    }
+    text += ']';
+    console.log(text);
+  }
+
+  claer() {
+    this.head = null;
+    this.count = 0;
+  }
+
+  insertLast(data) {
+    this.insertAt(this.count, data);
+  }
+
+  deleteAt(index) {
+    if (index < 0 || index >= this.count) {
+      throw new Error('index는 0보다 크고 count보다 작거나 같아야 합니다.');
+    }
+
+    let deletedNode;
+
+    if (index === 0) {
+      deletedNode = this.head;
+      this.head = this.head.next;
+      this.count--;
+      return deletedNode;
+    } else {
+      let currentNode = this.head;
+      for (let i = 0; i < index - 1; i++) {
+        currentNode = currentNode.next;
+      }
+      deletedNode = currentNode.next;
+      currentNode.next = currentNode.next.next;
+      this.count--;
+      return deletedNode;
+    }
+  }
+
+  deleteLast() {
+    this.deleteAt(this.count - 1);
+  }
+
+  getNodeAt(index) {
+    if (index < 0 || index >= this.count) {
+      throw new Error('index는 0보다 크고 count보다 작거나 같아야 합니다.');
+    }
+
+    let currentNode = this.head;
+    for (let i = 0; i < index; i++) {
       currentNode = currentNode.next;
     }
+    return currentNode;
   }
 }
 
