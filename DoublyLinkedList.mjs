@@ -57,27 +57,28 @@ class DoublyLinkedList {
     let newNode = new Node(data);
 
     if (index === 0) {
-      if ((this.head = null)) {
-        this.head = newNode;
-        this.tail = newNode;
-      } else {
-        newNode.next = this.head;
-        newNode.next.prev = newNode;
-        this.head = newNode;
+      newNode.next = this.head;
+      if (this.head != null) {
+        this.head.prev = newNode;
       }
+      this.head = newNode;
     } else if (index === this.count) {
-      this.tail.next = newNode;
+      newNode.next = null;
       newNode.prev = this.tail;
-      this.tail = newNode;
+      this.tail.next = newNode;
     } else {
       let currentNode = this.head;
       for (let i = 0; i < index - 1; i++) {
         currentNode = currentNode.next;
       }
       newNode.next = currentNode.next;
-      currentNode.next.prev = newNode;
-      currentNode.next = newNode;
       newNode.prev = currentNode;
+      currentNode.next = newNode;
+      newNode.next.prev = newNode;
+    }
+
+    if (newNode.next === null) {
+      this.tail = newNode;
     }
     this.count++;
   }
@@ -93,7 +94,19 @@ class DoublyLinkedList {
     let currentNode = this.head;
     if (index === 0) {
       let deleteNode = this.head;
-      this.head = this.head.next;
+      if (this.head.next === null) {
+        this.head = null;
+        this.tail = null;
+      } else {
+        this.head = this.head.next;
+        this.head.prev = null;
+      }
+      this.count--;
+      return deleteNode;
+    } else if (index === this.count - 1) {
+      let deleteNode = this.tail;
+      this.tail.prev.next = null;
+      this.tail = this.tail.prev;
       this.count--;
       return deleteNode;
     } else {
@@ -102,6 +115,7 @@ class DoublyLinkedList {
       }
       let deleteNode = currentNode.next;
       currentNode.next = currentNode.next.next;
+      currentNode.next.prev = currentNode;
       this.count--;
       return deleteNode;
     }
